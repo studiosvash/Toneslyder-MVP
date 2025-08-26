@@ -7,13 +7,14 @@ import { env } from "./env";
 import { RewriteRequest, RewriteResponse } from "./types";
 
 export async function rewritePipeline(req: RewriteRequest): Promise<RewriteResponse> {
-  const { tXext, sliders = {}, guardrails = {} } = req;
-  // Normalize slider values (0-100 to -1..1)
+  const { text, sliders = {}, guardrails = {} } = req;
+
+  // Normalize slider values (0..100) to -1.0..+1.0
   const normalized = normalizeAll(sliders);
   const buckets = mapToBuckets(normalized as any);
   const prompt = buildPrompt(text, buckets, guardrails);
 
-  let provider;
+  let provider: any;
   if (env.providerMode === "real") {
     provider = new OpenAIProvider();
   } else {
