@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appversion/2015-10-10"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:type="TaskPaneApp">
+  <Id>com.toneslyder.wordaddin</Id>
+  <Version>1.0.0</Version>
+  <ProviderName>ToneSlyder</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="ToneSlyder Word Add-in"/>
+  <Description DefaultValue="Rewrite selected text with adjustable tone sliders."/>
+  <IconUrl DefaultValue="https://localhost:8787/word-addin/icon-32.png"/>
+  <HighResolutionIconUrl DefaultValue="https://localhost:8787/word-addin/icon-64.png"/>
+  <SupportUrl DefaultValue="https://example.com"/>
+  <Hosts>
+    <Host Name="Document"/>
+  </Hosts>
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://localhost:8787/word-addin/index.html"/>
+  </DefaultSettings>
+  <Permissions>ReadWriteDocument</Permissions>
+</OfficeApp>
