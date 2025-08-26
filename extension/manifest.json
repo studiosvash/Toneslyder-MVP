@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "ToneSlyder",
+  "description": "Rewrite text tone using sliders",
+  "version": "0.1.0",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "action": {
+    "default_title": "ToneSlyder",
+    "default_popup": "sidebar.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ]
+}
