@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ToneSlyder</title>
+  <style>
+    body { font-family: Arial, sans-serif; width: 300px; padding: 10px; }
+    .slider-container { margin-bottom: 10px; }
+    .slider-container label { display: block; }
+    input[type=range] { width: 100%; }
+    #status { margin-top: 10px; color: #555; }
+    #previewArea { margin-top: 10px; white-space: pre-wrap; border: 1px solid #ccc; padding: 5px; min-height: 50px; }
+  </style>
+</head>
+<body>
+  <h2>ToneSlyder</h2>
+  <div class="slider-container">
+    <label>Formality: <span id="formalityValue">50</span></label>
+    <input type="range" id="formality" min="0" max="100" value="50">
+  </div>
+  <div class="slider-container">
+    <label>Conversational: <span id="conversationalValue">50</span></label>
+    <input type="range" id="conversational" min="0" max="100" value="50">
+  </div>
+  <div class="slider-container">
+    <label>Informativeness: <span id="informativenessValue">50</span></label>
+    <input type="range" id="informativeness" min="0" max="100" value="50">
+  </div>
+  <div class="slider-container">
+    <label>Authoritativeness: <span id="authoritativenessValue">50</span></label>
+    <input type="range" id="authoritativeness" min="0" max="100" value="50">
+  </div>
+  <div>
+    <label>Required terms (comma separated)</label>
+    <input type="text" id="required" placeholder="important,ProductX" style="width:100%;">
+  </div>
+  <div>
+    <label>Banned terms (comma separated)</label>
+    <input type="text" id="banned" placeholder="ban,forbidden" style="width:100%;">
+  </div>
+  <button id="previewBtn">Preview</button>
+  <button id="applyBtn">Apply</button>
+  <button id="undoBtn" disabled>Undo</button>
+  <div id="status"></div>
+  <div id="previewArea"></div>
+
+  <script src="sidebar.js"></script>
+</body>
+</html>
