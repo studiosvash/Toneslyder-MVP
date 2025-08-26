@@ -23,7 +23,7 @@ export class OpenAIProvider implements LLMProvider {
     const data = await response.json();
     const content = data.choices?.[0]?.message?.content || '';
     return {
-      output: content.trim(),
+      rewrittenText: content.trim(),
       usage: {
         promptTokens: data.usage?.prompt_tokens || 0,
         completionTokens: data.usage?.completion_tokens || 0,
