@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+      body { font-family: Arial, sans-serif; padding: 10px; }
+      label { display: block; margin-top: 8px; }
+      input[type="range"] { width: 100%; }
+    </style>
+    <script>
+      const BACKEND_URL = "https://your-backend-url/rewrite";
+      let originalText = '';
+      function getSelection() {
+        google.script.run.withSuccessHandler(function(text) {
+          originalText = text;
+          document.getElementById('original').textContent = text;
+        }).getSelectedText();
+      }
+      function applyRewrite() {
+        const sliders = {
+          formality: Number(document.getElementById('formality').value),
+          conversational: Number(document.getElementById('conversational').value),
+          informativeness: Number(document.getElementById('informativeness').value),
+          authoritativeness: Number(document.getElementById('authoritativeness').value)
+        };
+        const guardrails = {
+          required: document.getElementById('required').value.split(',').map(s => s.trim()).filter(Boolean),
+          banned: document.getElementById('banned').value.split(',').map(s => s.trim()).filter(Boolean)
+        };
+        fetch(BACKEND_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text: originalText, sliders: sliders, guardrails: guardrails })
+        }).then(res => res.json()).then(res => {
+          document.getElementById('rewritten').textContent = (res.rewrittenText || '');
+        }).catch(err => {
+          document.getElementById('rewritten').textContent = 'Error: ' + err;
+        });
+      }
+      function applyToDoc() {
+        const rewritten = document.getElementById('rewritten').textContent;
+        google.script.run.replaceSelectedText(rewritten);
+      }
+    </script>
+  </head>
+  <body>
+    <h3>ToneSlyder</h3>
+    <button onclick="getSelection()">Load Selection</button>
+    <div id="original" style="white-space: pre-wrap; margin-top:10px; background:#f2f2f2; padding:4px;"></div>
+    <label>Formality: <input type="range" id="formality" min="0" max="100" value="50"></label>
+    <label>Conversational: <input type="range" id="conversational" min="0" max="100" value="50"></label>
+    <label>Informativeness: <input type="range" id="informativeness" min="0" max="100" value="50"></label>
+    <label>Authoritativeness: <input type="range" id="authoritativeness" min="0" max="100" value="50"></label>
+    <label>Required terms (comma-separated): <input type="text" id="required"></label>
+    <label>Banned terms: <input type="text" id="banned"></label>
+    <button onclick="applyRewrite()">Preview</button>
+    <div id="rewritten" style="white-space: pre-wrap; margin-top:10px; background:#e2f7e2; padding:4px;"></div>
+    <button onclick="applyToDoc()">Apply</button>
+  </body>
+</html>
