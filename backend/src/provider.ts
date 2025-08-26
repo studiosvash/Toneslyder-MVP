@@ -9,7 +9,7 @@ export type ProviderName = "mock" | "openai";
 export class MockProvider implements LLMProvider {
   async rewrite(prompt: string): Promise<RewriteResponse> {
     return {
-      output: prompt,
+      rewrittenText: prompt,
       usage: { promptTokens: 0, completionTokens: 0, totalTokens: 0 },
       warnings: [],
     };
