@@ -1,0 +1,22 @@
+{
+  "name": "toneslyder-backend",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "zod": "^3.20.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.4",
+    "@types/node": "^18.16.3",
+    "@types/express": "^4.17.14",
+    "ts-node-dev": "^2.0.0"
+  }
+}
