@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ToneSlyder Word Add-in</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h2>ToneSlyder</h2>
+    <div class="slider-group">
+      <label>Formality
+        <input type="range" id="formality" min="0" max="100" value="50" />
+        <span id="formalityValue">50</span>%
+      </label>
+      <label>Conversational
+        <input type="range" id="conversational" min="0" max="100" value="50" />
+        <span id="conversationalValue">50</span>%
+      </label>
+      <label>Informativeness
+        <input type="range" id="informativeness" min="0" max="100" value="50" />
+        <span id="informativenessValue">50</span>%
+      </label>
+      <label>Authoritativeness
+        <input type="range" id="authoritativeness" min="0" max="100" value="50" />
+        <span id="authoritativenessValue">50</span>%
+      </label>
+    </div>
+    <div class="guardrails">
+      <label>Required terms:
+        <input type="text" id="requiredTerms" placeholder="comma-separated" />
+      </label>
+      <label>Banned terms:
+        <input type="text" id="bannedTerms" placeholder="comma-separated" />
+      </label>
+    </div>
+    <button id="previewButton">Preview</button>
+    <button id="applyButton" disabled>Apply</button>
+    <button id="undoButton" disabled>Undo</button>
+    <div id="status"></div>
+    <pre id="previewArea" style="white-space:pre-wrap;"></pre>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
